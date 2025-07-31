@@ -24,4 +24,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
     List<Tournament> findAllById(Iterable<Long> longs);
 
     List<Tournament> findByStartDate(LocalDate date);
+
+    List<Tournament> findByLocationContainingIgnoreCase(String location);
 }

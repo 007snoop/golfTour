@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: golfclub-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/golfclub
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1845
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  db:
+    image: mysql:8
+    container_name: golfclub-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: golfclub
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"  # Local port 3307 → MySQL port 3306
+    volumes:
+      - golfclub_data:/var/lib/mysql
+
+volumes:
+  golfclub_data:

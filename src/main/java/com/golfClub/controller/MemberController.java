@@ -18,7 +18,7 @@ public class MemberController {
 
     @GetMapping
     public List<Member> getAllMembers() {
-        return memberService.getAllMembers();
+    return memberService.getAllMembers();
     }
 
     @PostMapping
