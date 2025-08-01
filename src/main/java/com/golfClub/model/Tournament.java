@@ -2,7 +2,6 @@ package com.golfClub.model;
 
 import jakarta.persistence.*;
 
-import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;

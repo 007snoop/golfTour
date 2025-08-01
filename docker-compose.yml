@@ -13,18 +13,27 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1845
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - golftour-net
 
   db:
     image: mysql:8
     container_name: golfclub-db
-    restart: always
     environment:
       MYSQL_DATABASE: golfclub
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1845
+      MYSQL_ROOT_PASSWORD: 1845
     ports:
-      - "3307:3306"  # Local port 3307 → MySQL port 3306
+      - "3307:3306"
     volumes:
       - golfclub_data:/var/lib/mysql
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql:ro
+    networks:
+      - golftour-net
 
 volumes:
   golfclub_data:
+
+networks:
+  golftour-net:
