@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+
     build: .
     container_name: golfclub-api
     ports:
@@ -15,14 +16,18 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     networks:
       - golftour-net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
 
   db:
     image: mysql:8
     container_name: golfclub-db
     environment:
       MYSQL_DATABASE: golfclub
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 1845
       MYSQL_ROOT_PASSWORD: 1845
     ports:
       - "3307:3306"

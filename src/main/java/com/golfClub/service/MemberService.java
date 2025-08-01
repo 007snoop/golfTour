@@ -2,9 +2,11 @@ package com.golfClub.service;
 
 import com.golfClub.model.Member;
 import com.golfClub.repo.MemberRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
